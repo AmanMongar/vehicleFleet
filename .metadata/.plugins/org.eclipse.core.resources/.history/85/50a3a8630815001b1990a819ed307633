@@ -1,0 +1,40 @@
+package com.example.demoexamples;
+
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+import reactor.core.publisher.Flux;
+
+
+public class MyOwnSubscriver {
+    public static void main(String[] args) {
+
+        Subscriber<String> subscriber = new Subscriber<String>() {
+            volatile Subscription subscription;
+
+            public void onSubscribe(Subscription s) {
+                subscription = s;
+                System.out.println("initial request for 1 element");
+                subscription.request(1);
+            }
+
+            public void onNext(String s) {
+                System.out.println("onNext: {}" + s);
+                System.out.println("requesting 1 more element");
+                subscription.request(1);
+            }
+
+            public void onComplete() {
+                System.out.println("onComplete");
+            }
+
+            public void onError(Throwable t) {
+                System.out.println("onError: {}" + t.getMessage());
+            }
+
+        };
+
+        Flux.just("One", "Two", "Java")
+                .subscribe(subscriber);
+
+    }
+}

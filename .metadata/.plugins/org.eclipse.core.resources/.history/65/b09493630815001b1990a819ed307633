@@ -1,0 +1,18 @@
+package com.example.demoexamples;
+
+import reactor.core.publisher.Flux;
+import reactor.core.scheduler.Schedulers;
+
+
+public class Parallel_operator {
+    public static void main(String[] args) {
+
+        Flux.range(0, 100)
+                .parallel()
+                .runOn(Schedulers.parallel())
+                .map(s -> s + 1)
+                .filter(f -> f <= 10)
+                .subscribe(System.out::println);
+
+    }
+}

@@ -1,0 +1,22 @@
+package com.example.demoexamples;
+
+import reactor.core.publisher.Flux;
+
+
+public class Backpressure_exmaple {
+    public static void main(String[] args) {
+
+        Flux.range(1, 100)
+                .subscribe(
+                        System.out::println,
+                        err -> {
+                        },
+                        () -> System.out.println("Done"),
+                        subscription -> {
+                            subscription.request(4);
+                            subscription.cancel();
+                        }
+                );
+
+    }
+}

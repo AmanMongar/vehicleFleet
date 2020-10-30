@@ -1,0 +1,9 @@
+zuul.routes.assert.url=http://localhost:8081
+zuul.routes.hr.url=http://localhost:8082
+zuul.routes.tavel.url=http://localhost:8083
+zuul.routes.billing.url=http://localhost:8084
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+server.port=8079
+spring.application.name=fleert-gateway-service
+

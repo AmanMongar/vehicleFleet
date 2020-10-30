@@ -1,0 +1,7 @@
+#zuul.routes.producer.url=http://localhost:8080
+#zuul.routes.consumer.url=http://localhost:8096
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8787/eureka
+server.port=8079
+spring.application.name=fleert-gateway-service
+
